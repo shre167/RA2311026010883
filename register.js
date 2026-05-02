@@ -29,15 +29,12 @@ const register = async () => {
         const data = await response.json();
         console.log("\n✅ Registration Successful!");
         console.log("\n=======================================================");
-        console.log("Here is your Access Token (save this somewhere safe!):");
+        console.log("Server Response Data:");
         console.log("=======================================================\n");
         console.log(JSON.stringify(data, null, 2));
         console.log("\n=======================================================");
-        
-        if (data.access_token) {
-            console.log("\nYou can use this token to initialize your logging middleware like this:");
-            console.log(`initLogger({ token: "${data.access_token.substring(0, 20)}..." });`);
-        }
+        console.log("\nResponse Keys Available:");
+        Object.keys(data).forEach(key => console.log(`- ${key}: ${data[key]}`));
         
     } catch (error) {
         console.error("An error occurred during registration:", error);
